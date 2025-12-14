@@ -14,6 +14,11 @@ spec:
     spec:
       containers:
         - name: usuarios
-          image: nginx:alpine
+          image: nginx:1:25
           ports:
             - containerPort: 80
+    strategy:
+      type:  RollingUpdate
+      rollingUpdate:
+        maxUnavailable: 1
+        maxSurge: 1
