@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+
+nameSuffix: -prod
+namespace: usuarios-prod
+
+patches:
+  - path: patch-replicas.yaml

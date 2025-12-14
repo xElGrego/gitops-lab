@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: usuarios-prod
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/xElGrego/gitops-lab
+    targetRevision: HEAD
+    path: apps/usuarios/overlays/prod
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: usuarios-prod
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

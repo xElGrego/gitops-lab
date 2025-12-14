@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: usuarios
+  name: usuarios-dev
   namespace: argocd
 spec:
   project: default
@@ -9,11 +9,11 @@ spec:
   source:
     repoURL: https://github.com/xElGrego/gitops-lab
     targetRevision: HEAD
-    path: apps/usuarios
+    path: apps/usuarios/overlays/dev
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: usuarios
+    namespace: usuarios-dev
 
   syncPolicy:
     syncOptions:
