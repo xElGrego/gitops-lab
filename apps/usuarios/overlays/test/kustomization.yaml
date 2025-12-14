@@ -1,0 +1,8 @@
+resources:
+  - ../../base
+
+nameSuffix: -test
+namespace: usuarios-test
+
+patchesStrategicMerge:
+  - patch-replicas.yaml
