@@ -4,9 +4,17 @@ metadata:
   name: usuarios
 spec:
   replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: usuarios
+
   template:
     metadata:
       labels:
@@ -17,8 +25,21 @@ spec:
           image: nginx:1.25
           ports:
             - containerPort: 80
-    strategy:
-      type:  RollingUpdate
-      rollingUpdate:
-        maxUnavailable: 1
-        maxSurge: 1
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: APP_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: usuarios-config
+                  key: APP_NAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: usuarios-secret
+                  key: DB_PASSWORD
