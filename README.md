@@ -58,7 +58,7 @@ La contraseña se genera automáticamente en un Secret. Usamos este comando para
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}"
 
 # Decodificar el resultado (ejemplo manual)
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("TU_CLAVE_EN_BASE64"))
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YTlXNmZaRUdieDFscEYtLQ=="))
 ```
 
 #### Exponer el servicio (Port Forward)
